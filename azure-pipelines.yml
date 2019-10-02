@@ -3,28 +3,15 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-steps:
-- task: DotNetCoreInstaller@0
-
 trigger:
 - master
+
+steps:
+- script: dotnet restore
+- script: dotnet build
+  displayName: 'Run a one-line script'
 
 pool:
   vmImage: 'ubuntu-latest'
 
-- script: dotnet restore
-  displayName: 'Run a one-line script'
 
-- task: DotNetCoreCLI@2
-  displayName: Build
-  inputs:
-    command: build
-    projects: '**/*.csproj'
-    arguments: '--configuration Release'
-
-- task: DotNetCoreCLI@2
-  displayName: 'Install dotnetsay'
-  inputs:
-    command: custom
-    custom: tool
-    arguments: 'install -g dotnetsay'
