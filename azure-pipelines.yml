@@ -5,8 +5,6 @@
 
 steps:
 - task: DotNetCoreInstaller@0
-inputs:
-    version: '3.0.1' 
 
 trigger:
 - master
@@ -18,7 +16,6 @@ steps:
 - script: dotnet restore
   displayName: 'Run a one-line script'
 
-steps:
 - task: DotNetCoreCLI@2
   displayName: Build
   inputs:
@@ -26,7 +23,6 @@ steps:
     projects: '**/*.csproj'
     arguments: '--configuration Release'
 
-steps:
 - task: DotNetCoreCLI@2
   displayName: 'Install dotnetsay'
   inputs:
